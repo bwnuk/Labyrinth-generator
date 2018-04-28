@@ -70,5 +70,4 @@ class TopInterface:
 
     def create_start(self, L):
         self.label_start.grid(row=4+self.size_M, column=0, sticky=W)
-        while not(L.set_start()):
-            pass
+        L.set_start()

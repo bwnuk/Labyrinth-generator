@@ -23,8 +23,8 @@ class Labyrinth:
             for j in range(int(self.X)):
                 self.L[i][j].get_button().grid(row=i+4, column=2+j, sticky=W)
 
+
     def set_start(self):
-        print("s")
         for i in range(int(self.Y)):
             for j in range(int(self.X)):
                 if self.L[i][j].clicked_return():
@@ -81,6 +81,8 @@ class Element:
             self.value = 2
         else:
             self.value = 3
+        print(self.pos_Y, self.pos_X)
+        print(self.value)
 
     def clicked_return(self):
         return self.clicked
