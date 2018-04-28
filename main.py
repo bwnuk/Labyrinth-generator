@@ -1,11 +1,10 @@
-from tkinter import *
 from interface import *
 
 def main():
     root = Tk()
     root.title("Labyrinth generator")
 
-    work(root)
+    Top = TopInterface(root)
 
     root.mainloop()
 
