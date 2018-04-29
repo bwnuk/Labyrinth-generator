@@ -24,13 +24,6 @@ class Labyrinth:
                 self.L[i][j].get_button().grid(row=i+4, column=2+j, sticky=W)
 
 
-    def set_start(self):
-        for i in range(int(self.Y)):
-            for j in range(int(self.X)):
-                if self.L[i][j].clicked_return():
-                    print(self.L[i][j].get_value())
-
-
 # *** Labyrinth's element ***
 # @param1 root,  @param2 text, @param3 x position<column>, @param4 y position<row>
 # Values 0-wall, 1-road, 2-entrance, 3-exit
@@ -76,13 +69,4 @@ class Element:
 #Koniec wybieramy przez dwa klikniecia
 
     def click_function(self, event):
-        self.clicked = True
-        if self.value == 0:
-            self.value = 2
-        else:
-            self.value = 3
-        print(self.pos_Y, self.pos_X)
-        print(self.value)
-
-    def clicked_return(self):
-        return self.clicked
+        pass
