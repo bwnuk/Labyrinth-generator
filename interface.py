@@ -13,7 +13,7 @@ SIZE_Y = 1
 
 class TopInterface:
     def __init__(self, master):
-
+        self.L = 0
         self.counter = False
 
         self.size_N = 0
@@ -81,9 +81,10 @@ class TopInterface:
         return [self.size_N, self.size_M]
 
     def create(self, master):
-        L = Labyrinth(self.size_N, self.size_M, master)
+        temp = Labyrinth(self.size_N, self.size_M, master)
+        self.L = temp
         #L.wypisz()
-        L.rysuj()
+        self.L.rysuj()
         self.create_start()
 
     def create_start(self):
@@ -132,6 +133,8 @@ class TopInterface:
 
     def setting_start(self):
         self.reconfig_entry_start()
+        self.L.start_set(self.start_X, self.start_Y)
+        self.L.end_set(self.end_X , self.end_Y)
 
     def reconfig_entry_start(self):
         self.label_start.config(text="Start X - Y: "+str(self.start_X )+" - "+str(self.start_Y))
