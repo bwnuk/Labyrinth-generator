@@ -1,8 +1,8 @@
 from labyrinth import *
 import time
 
-# M = X
-# N = Y
+# M = X = Wysokość
+# N = Y = Szerokość
 
 # *** Button size ***
 SIZE_X = 2
@@ -90,11 +90,11 @@ class TopInterface:
     def create_start(self):
         self.label_info.grid(row=4+self.size_M, column=0, sticky=W)
 
-        self.label_start.grid(row=5+self.size_M, column=0, sticky=E)
+        self.label_start.grid(row=5+self.size_M, column=0, sticky=W)
         self.entry_startX.grid(row=6+self.size_M, column=0, sticky=E)
         self.entry_startY.grid(row=6+self.size_M, column=1, sticky=W)
 
-        self.label_end.grid(row=7+self.size_M, column=0, sticky=E)
+        self.label_end.grid(row=7+self.size_M, column=0, sticky=W)
         self.entry_endX.grid(row=8+self.size_M, column=0, sticky=E)
         self.entry_endY.grid(row=8+self.size_M, column=1, sticky=W)
 
@@ -122,8 +122,13 @@ class TopInterface:
                 self.label_error_input.config(text="Przedzial rozmiarow (0:30)")
                 self.label_error_input.grid(row=9+self.size_M, column=0, sticky=W)
             else:
-                self.label_error_input.grid_forget()
-                self.setting_start()
+                if self.case_start():
+                    self.label_error_input.grid_forget()
+                    self.label_info.grid_forget()
+                    self.setting_start()
+                else:
+                    self.label_error_input.config(text="Musisz podac PKT na zewnetrrznych scianach")
+                    self.label_error_input.grid(row=9 + self.size_M, column=0, sticky=W)
         except:
             if self.counter:
                 pass
@@ -146,3 +151,21 @@ class TopInterface:
         self.entry_endY.grid_forget()
 
         self.button_confirm1.grid_forget()
+
+    def case_start(self):
+        if self.start_Y == self.end_Y and self.start_X == self.end_X:
+            return False
+        else:
+            if self.start_X in [0, self.size_M-1]:
+                if self.end_X in [0, self.size_M-1]:
+                    return True
+                else:
+                    if self.end_Y in [0, self.size_N-1]:
+                        return True
+                    else:
+                        return False
+            else:
+                if self.start_Y in [0, self.size_N-1]:
+                    return True
+                else:
+                    return False
