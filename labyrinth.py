@@ -3,13 +3,11 @@ from tkinter import *
 # *** Labyrinth ***
 # @param1, @param2 size of Labyrinth, @param3 root
 
-
 class Labyrinth:
     def __init__(self, X, Y, master):
         self.X = X
         self.Y = Y
         self.L = [[Element(master, " ", w, r) for w in range(int(X))] for r in range(int(Y))]
-
 
     #Test Funcition
     def wypisz(self):
@@ -22,6 +20,10 @@ class Labyrinth:
         for i in range(int(self.Y)):
             for j in range(int(self.X)):
                 self.L[i][j].get_button().grid(row=i+4, column=2+j, sticky=W)
+
+    def middle_set(self, X, Y):
+        print("A")
+        pass
 
     def start_set(self, X, Y):
         self.L[X][Y].change_value(2)

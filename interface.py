@@ -22,6 +22,9 @@ class TopInterface:
         self.start_X = 0
         self.start_Y = 0
 
+        self.mid_X = 0
+        self.mid_Y = 0
+
         self.end_X = 0
         self.end_Y = 0
 
@@ -39,6 +42,10 @@ class TopInterface:
         self.label_end = Label(self.topFrame, text="Koniec X - Y:")
         self.entry_endX = Entry(self.topFrame, width=2)
         self.entry_endY = Entry(self.topFrame, width=2)
+
+        self.label_middle = Label(self.topFrame, text="Punkt posredni X - Y:")
+        self.entry_midX = Entry(self.topFrame, width=2)
+        self.entry_midY = Entry(self.topFrame, width=2)
 
         self.label_N = Label(self.topFrame, text="Rozmiar N:")
         self.label_M = Label(self.topFrame, text="Rozmiar M:")
@@ -58,6 +65,12 @@ class TopInterface:
 
         self.button_confirm1 = Button(self.topFrame, text="Zatwierdz", fg="blue", command=lambda: self.get_entry_start(self.topFrame))
         self.button_confirm1.bind("<Button-1>")
+
+        self.button_generate = Button(self.topFrame, text="Generuj", fg="blue", command=lambda: self.generate(self.topFrame))
+        self.button_confirm1.bind("<Button-1>")
+
+        self.button_mid = Button(self.topFrame, text="Zatwierdz", fg="blue", command=lambda: self.get_middle(self.topFrame))
+        self.button_mid.bind("<Button-1>")
 
     def get_entry(self, master):
         try:
@@ -98,7 +111,8 @@ class TopInterface:
         self.entry_endX.grid(row=8+self.size_M, column=0, sticky=E)
         self.entry_endY.grid(row=8+self.size_M, column=1, sticky=W)
 
-        self.button_confirm1.grid(row=4+self.size_M, column=self.size_N+1, sticky=E)
+        self.button_confirm1.grid(row=8+self.size_M, column=self.size_N+1, sticky=E)
+        self.button_generate.grid(row=4+self.size_M, column=self.size_N+1, sticky=E)
         self.reconfig_entry()
 
     def reconfig_entry(self):
@@ -125,7 +139,7 @@ class TopInterface:
                 if self.case_start():
                     self.label_error_input.grid_forget()
                     self.label_info.grid_forget()
-                    self.setting_start()
+                    self.reconfig_entry_start()
                 else:
                     self.label_error_input.config(text="Musisz podac PKT na zewnetrrznych scianach")
                     self.label_error_input.grid(row=9 + self.size_M, column=0, sticky=W)
@@ -135,11 +149,6 @@ class TopInterface:
             else:
                 self.label_error_input.config(text="Musisz podac wartosc!")
                 self.label_error_input.grid(row=9 + self.size_M, column=0, sticky=W)
-
-    def setting_start(self):
-        self.reconfig_entry_start()
-        self.L.start_set(self.start_X, self.start_Y)
-        self.L.end_set(self.end_X , self.end_Y)
 
     def reconfig_entry_start(self):
         self.label_start.config(text="Start X - Y: "+str(self.start_X )+" - "+str(self.start_Y))
@@ -151,6 +160,7 @@ class TopInterface:
         self.entry_endY.grid_forget()
 
         self.button_confirm1.grid_forget()
+        self.set_middle()
 
     def case_start(self):
         if self.start_Y == self.end_Y and self.start_X == self.end_X:
@@ -169,3 +179,40 @@ class TopInterface:
                     return True
                 else:
                     return False
+
+    def get_middle(self, master):
+        try:
+            self.mid_X = int(self.entry_midX.get())
+            self.mid_Y = int(self.entry_midY.get())
+
+            if  self.mid_X > self.size_N or self.mid_X < 0 or self.mid_Y > self.size_M or self.mid_Y < 0:
+                self.label_error_value.config(text="Przedzial taki jak rozmiar labiryntu")
+                self.label_error_value.grid(row=11+self.size_M, column=0, sticky=W)
+            else:
+                if (self.mid_X == self.start_X and self.mid_Y == self.start_Y) or (self.mid_X == self.end_X and self.mid_Y == self.end_Y):
+                    self.label_error_value.config(text="Nie moze byc taki jak start, lub koniec")
+                    self.label_error_value.grid(row=11 + self.size_M, column=0, sticky=W)
+                else:
+                    self.label_error_value.grid_forget()
+                    self.middle()
+        except:
+            if self.counter:
+                pass
+            else:
+                self.label_error_value.config(text="Musisz podac wartosc!")
+                self.label_error_value.grid(row=11+self.size_M, column=0, sticky=W)
+
+    def set_middle(self):
+        self.label_middle.grid(row=9+self.size_M, column=0, sticky=W)
+        self.entry_midX.grid(row=10+self.size_M, column=0, sticky=E)
+        self.entry_midY.grid(row=10+self.size_M, column=1, sticky=W)
+
+        self.button_mid.grid(row=10+self.size_M, column=self.size_N+1, sticky=E)
+
+    def middle(self):
+        self.label_middle.config(text="Punkt posredni X - Y: "+str(self.mid_X)+" - "+str(self.mid_Y))
+        self.L.middle_set(self.mid_X, self.mid_Y)
+
+    def generate(self, master):
+        self.L.start_set(self.start_X, self.start_Y)
+        self.L.end_set(self.end_X, self.end_Y)
