@@ -1,5 +1,6 @@
 from labyrinth import *
 import time
+from algorithm import *
 
 # M = X = Wysokość
 # N = Y = Szerokość
@@ -15,6 +16,7 @@ class TopInterface:
     def __init__(self, master):
         self.L = 0
         self.counter = False
+        self.counter_middle = False
 
         self.size_N = 0
         self.size_M = 0
@@ -182,8 +184,12 @@ class TopInterface:
 
     def get_middle(self, master):
         try:
+            if self.counter_middle:
+                self.L.middle_clear(self.mid_X, self.mid_Y)
             self.mid_X = int(self.entry_midX.get())
             self.mid_Y = int(self.entry_midY.get())
+
+            self.counter_middle = True
 
             if  self.mid_X > self.size_N or self.mid_X < 0 or self.mid_Y > self.size_M or self.mid_Y < 0:
                 self.label_error_value.config(text="Przedzial taki jak rozmiar labiryntu")
@@ -211,8 +217,26 @@ class TopInterface:
 
     def middle(self):
         self.label_middle.config(text="Punkt posredni X - Y: "+str(self.mid_X)+" - "+str(self.mid_Y))
-        self.L.middle_set(self.mid_X, self.mid_Y)
 
     def generate(self, master):
         self.L.start_set(self.start_X, self.start_Y)
         self.L.end_set(self.end_X, self.end_Y)
+
+        if self.counter_middle:
+            self.L.middle_set(self.mid_X, self.mid_Y)
+        self.default_lab()
+
+    #TEST
+    def default_lab(self):
+        L = [[2, 0, 0, 1, 0],
+             [1, 1, 4, 1, 0],
+             [0, 1, 0, 1, 0],
+             [0, 1, 0, 1, 1],
+             [1, 1, 0, 1, 0],
+             [0, 0, 0, 1, 3]]
+        self.L.filling(L,6, 5)
+
+        if Bot(self.L, self.size_N, self.size_M, self.start_X, self.start_Y):
+            print("A")
+        else:
+            print("B")
