@@ -229,14 +229,29 @@ class TopInterface:
     #TEST
     def default_lab(self):
         L = [[2, 0, 0, 1, 0],
-             [1, 1, 4, 1, 0],
+             [1, 1, 1, 1, 0],
              [0, 1, 0, 1, 0],
              [0, 1, 0, 1, 1],
              [1, 1, 0, 1, 0],
              [0, 0, 0, 1, 3]]
-        self.L.filling(L,6, 5)
+
+        L1 = [[2, 0, 0, 1, 1],
+              [1, 1, 1, 1, 0],
+              [0, 1, 0, 0, 0],
+              [1, 1, 0, 1, 0],
+              [1, 0, 0, 0, 0],
+              [1, 1, 1, 1, 3]]
+
+        L2 = [[2, 0, 1, 0, 1],
+              [1, 1, 1, 1, 1],
+              [1, 0, 1, 0, 0],
+              [1, 0, 1, 1, 1],
+              [1, 0, 0, 1, 0],
+              [1, 1, 0, 1, 3]]
+
+        self.L.filling(L2,6, 5)
 
         if Bot(self.L, self.size_N, self.size_M, self.start_X, self.start_Y):
-            print("A")
+            print("DONE")
         else:
-            print("B")
+            print("FALSE")

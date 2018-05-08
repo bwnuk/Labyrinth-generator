@@ -47,7 +47,6 @@ def Bot(L, x, y, x_p, y_p):
                     side = 1
                 elif L.get_value(i, j - 1) == 1 == 1 or L.get_value(i, j - 1) == 3 or L.get_value(i, j - 1) == 4:
                     j = j - 1
-                    side = 1
         except:
             if side != 2:
                 side = side + 1
@@ -55,6 +54,6 @@ def Bot(L, x, y, x_p, y_p):
                 side = 0
 
         counter = counter + 1
-        if counter >= 30:
+        if counter >= 10000:
             return False
     return True
