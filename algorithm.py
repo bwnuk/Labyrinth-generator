@@ -1,3 +1,6 @@
+import time
+
+
 # *** Bot ***
 # Function responsible for the transition of Labyrinth
 # @param1 object Labyrinth, @param2 size of x of Labyrinth, @param3 size of y of Labyrinth
@@ -6,7 +9,7 @@ def Bot(L, x, y, x_p, y_p):
     i = x_p
     j = y_p
 
-    #secure
+    # secure
 
     counter = 0
 
@@ -18,16 +21,16 @@ def Bot(L, x, y, x_p, y_p):
         print(L.get_value(i, j), i, j, side)
         try:
             if side == 0:
-                #dol
+                # dol
                 if L.get_value(i + 1, j) == 1 or L.get_value(i + 1, j) == 3 or L.get_value(i + 1, j) == 4:
                     i = i + 1
-                #lewo
+                # lewo
                 elif L.get_value(i, j - 1) == 1 or L.get_value(i, j - 1) == 3 or L.get_value(i, j - 1) == 4:
                     j = j - 1
-                #prawo
+                # prawo
                 elif L.get_value(i, j + 1) == 1 or L.get_value(i, j + 1) == 3 or L.get_value(i, j + 1) == 4:
                     side = 1
-                #gora
+                # gora
                 elif L.get_value(i - 1, j) == 1 or L.get_value(i - 1, j) == 3 or L.get_value(i - 1, j) == 4:
                     i = i - 1
             elif side == 1:
@@ -57,3 +60,20 @@ def Bot(L, x, y, x_p, y_p):
         if counter >= 10000:
             return False
     return True
+
+
+# *** Generator ***
+# Function responsible for generating labyrinth
+# @param1 x start, @param2 y start, @param3 x end, @param4 y end, @param5 rows, @param6 columns, @param7 boolean about middle point
+# @return labyrinth as a list
+
+def generator(x_p, y_p, x_k, y_k, r_x, r_y, b):
+    L = [[0 for i in range(r_y)] for j in range(r_x)]
+
+    L[x_p][y_p] = 2
+    L[x_k][y_k] = 3
+
+    if b:
+        pass
+
+    return L

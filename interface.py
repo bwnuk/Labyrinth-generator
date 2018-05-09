@@ -1,5 +1,4 @@
 from labyrinth import *
-import time
 from algorithm import *
 
 # M = X = Wysokość
@@ -15,6 +14,8 @@ SIZE_Y = 1
 class TopInterface:
     def __init__(self, master):
         self.L = 0
+
+        self.created = False
         self.counter = False
         self.counter_middle = False
 
@@ -139,7 +140,9 @@ class TopInterface:
                 self.label_error_input.grid(row=9+self.size_M, column=0, sticky=W)
             else:
                 if self.case_start():
+                    self.created = True
                     self.label_error_input.grid_forget()
+                    self.label_error_value.grid_forget()
                     self.label_info.grid_forget()
                     self.reconfig_entry_start()
                 else:
@@ -219,12 +222,22 @@ class TopInterface:
         self.label_middle.config(text="Punkt posredni X - Y: "+str(self.mid_X)+" - "+str(self.mid_Y))
 
     def generate(self, master):
-        self.L.start_set(self.start_X, self.start_Y)
-        self.L.end_set(self.end_X, self.end_Y)
+        if self.created:
+            self.label_error_value.grid_forget()
+            self.L.start_set(self.start_X, self.start_Y)
+            self.L.end_set(self.end_X, self.end_Y)
 
-        if self.counter_middle:
-            self.L.middle_set(self.mid_X, self.mid_Y)
-        self.default_lab()
+            if self.counter_middle:
+                self.L.middle_set(self.mid_X, self.mid_Y)
+
+            #self.default_lab()
+
+            self.L.filling(generator(self.start_X, self.start_Y, self.end_X, self.end_Y, self.size_M, self.size_N, self.counter_middle), self.size_N, self.size_M)
+            self.L.wypisz()
+
+        else:
+            self.label_error_value.config(text="Musisz podac start i koniec")
+            self.label_error_value.grid(row=11 + self.size_M, column=0, sticky=W)
 
     #TEST
     def default_lab(self):
@@ -250,6 +263,9 @@ class TopInterface:
               [1, 1, 0, 1, 3]]
 
         self.L.filling(L2,6, 5)
+
+        if self.counter_middle:
+            self.L.middle_set(self.mid_X, self.mid_Y)
 
         if Bot(self.L, self.size_N, self.size_M, self.start_X, self.start_Y):
             print("DONE")

@@ -11,10 +11,10 @@ class Labyrinth:
 
     # Test Funcition
     def wypisz(self):
-        print(self.L[0][0].get_value())
         for i in range(int(self.Y)):
             for j in range(int(self.X)):
-                print(self.L[i][j].get_value())
+                print(self.L[i][j].get_value(), end=" ")
+            print("")
 
     def rysuj(self):
         for i in range(int(self.Y)):
@@ -51,8 +51,8 @@ class Labyrinth:
 
     #First rows then columns
     def filling(self, L, k, w):
-        for i in range(0, k):
-            for j in range(0, w):
+        for i in range(0, w):
+            for j in range(0, k):
                 if L[i][j] == 0:
                     self.wall_set(i, j)
                 elif L[i][j] == 1:
