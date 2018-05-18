@@ -4,7 +4,7 @@ def main():
     root = Tk()
     root.title("Labyrinth generator")
 
-    Top = TopInterface(root)
+    Top = StartInterface(root)
 
     root.mainloop()
 

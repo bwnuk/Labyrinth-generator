@@ -13,6 +13,7 @@
         <list>
           <option value="int.start_set" />
           <option value="int.end_set" />
+          <option value="int.middle_clear" />
         </list>
       </option>
     </inspection_tool>
