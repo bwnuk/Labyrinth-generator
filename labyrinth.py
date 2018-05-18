@@ -7,45 +7,47 @@ from tkinter import *
 class Labyrinth:
     def __init__(self, X, Y):
         # rozmiar
-        self.X = X
-        self.Y = Y
+        self.__X = X
+        self.__Y = Y
 
-        self.L = [[0 for w in range(int(X))] for r in range(int(Y))]
+        self.__bool_mid = False
+        self.__L = [[0 for w in range(int(X))] for r in range(int(Y))]
 
     # Test Funcition
     def wypisz(self):
-        for i in range(int(self.Y)):
-            for j in range(int(self.X)):
-                print(self.L[i][j], end=" ")
+        for i in range(int(self.__Y)):
+            for j in range(int(self.__X)):
+                print(self.__L[i][j], end=" ")
             print("")
 
     def wall_set(self, X, Y):
-        self.L[X][Y] = 0
+        self.__L[X][Y] = 0
         # self.L[X][Y].change_color_bg("forest green")
 
     def road_set(self, X, Y):
-        self.L[X][Y] = 1
+        self.__L[X][Y] = 1
         # self.L[X][Y].change_color_bg("sandy brown")
 
     def middle_clear(self, X, Y):
-        self.L[X][Y] = 0
+        self.__L[X][Y] = 0
         # self.L[X][Y].change_color_bg("sandy brown")
 
     def middle_set(self, X, Y):
-        self.L[X][Y] = 4
+        self.__L[X][Y] = 4
+        self.__bool_mid = True
         # self.L[X][Y].change_color_bg("goldenrod2")
 
     def start_set(self, X, Y):
-        self.L[X][Y] = 2
+        self.__L[X][Y] = 2
         # self.L[X][Y].change_color_bg("SteelBlue2")
 
     def end_set(self, X, Y):
-        self.L[X][Y] = 3
+        self.__L[X][Y] = 3
         # self.L[X][Y].change_color_bg("violet")
 
     # @param1 rows, @param2 columns
     def get_value(self, X, Y):
-        return self.L[X][Y]
+        return self.__L[X][Y]
 
     # First rows then columns
     def filling(self, L, k, w):
