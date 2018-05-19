@@ -95,13 +95,14 @@ class LabyrinthInterface(Frame):
 
         self.__button_generate = 0
 
-        self.__error_generate= Label(self.master, text="Musisz dodac start i koniec", fg="red")
+        self.__error_generate = Label(self.master, text="Musisz dodac start i koniec", fg="red")
 
         self.grid()
 
     def change(self, X, Y):
         self.__X = X
         self.__Y = Y
+        self.__lab = Labyrinth(self.__X, self.__Y)
 
     # @Tablica
     # [Wiersz][Kolumna] = [Y] [X]
@@ -109,47 +110,45 @@ class LabyrinthInterface(Frame):
         self.__L = []
         for w in range(int(self.__Y)):
             self.__L.append([Button(self.master, text="", fg="white", bg="PaleTurquoise2",
-                                  command=lambda k=k, w=w: self.clicked(k, w)) for k in range(int(self.__X))])
+                                    command=lambda k=k, w=w: self.clicked(k, w)) for k in range(int(self.__X))])
         for i in range(int(self.__Y)):
             for j in range(int(self.__X)):
                 self.__L[i][j].grid(row=i + 4, column=2 + j, sticky=W)
 
         self.__button_generate = Button(self.master, text="Generuj", fg="blue", command=lambda: self.create())
         self.__button_generate.bind("<Button-1>")
-        self.__button_generate.grid(row=int(self.__Y)+4, column=int(self.__X)+1, sticky=E)
+        self.__button_generate.grid(row=int(self.__Y) + 4, column=int(self.__X) + 1, sticky=E)
 
     def button_change_color(self, color, X, Y):
         self.__L[Y][X].config(bg=color)
 
     def set_start(self, k, w):
-        if k >= 0 and w ==0 or k == 0 and w >= 0:
+        if k >= 0 and w == 0 or k == 0 and w >= 0:
             self.button_change_color("SteelBlue2", k, w)
-            self.__S[0] = w
-            self.__S[1] = k
+            self.__lab.start_set(w, k)
             return True
         else:
             return False
 
     def set_end(self, k, w):
-        if w == self.__Y - 1 and k >=0 or k == self.__X - 1 and w >=0:
+        if w == self.__Y - 1 and k >= 0 or k == self.__X - 1 and w >= 0:
             self.button_change_color("violet", k, w)
-            self.__K[0] = w
-            self.__K[1] = k
+            self.__lab.end_set(w, k)
             return True
         else:
             return False
 
     def set_mid(self, k, w):
-        if w == self.__S[0] and k == self.__S[1] or w == self.__K[0]and k == self.__K[1]:
+        if w == int(self.__lab.start_get()[1]) and k == int(self.__lab.start_get()[0]) or w == int(self.__lab.end_get()[1]) and k == int(self.__lab.end_get()[0]):
             pass
         else:
             self.button_change_color("goldenrod2", k, w)
 
             if self.__bool_mid:
-                self.button_change_color("PaleTurquoise2", self.__M[1], self.__M[0])
+                self.button_change_color("PaleTurquoise2", self.__lab.mid_get()[1], self.__lab.mid_get()[0])
+                self.__lab.mid_clear(self.__lab.mid_get()[1], self.__lab.mid_get()[0])
 
-            self.__M[0] = w
-            self.__M[1] = k
+            self.__lab.mid_set(w, k)
             self.__bool_mid = True
 
             return True
@@ -157,7 +156,7 @@ class LabyrinthInterface(Frame):
     # k = X = Kolumna
     # w = Y = Wiersz
     def clicked(self, k, w):
-        print(k, w)
+        #print(k, w)
         if not self.__bool_start:
             self.__bool_start = self.set_start(k, w)
         elif not self.__bool_end:
@@ -166,23 +165,25 @@ class LabyrinthInterface(Frame):
             self.set_mid(k, w)
 
     def koloruj(self):
-        pass
+        L = self.__lab.generate()
+        for i in range(0, int(self.__X)):
+            for j in range(0, int(self.__Y)):
+                if L[j][i] == 0:
+                    self.button_change_color("forest green", i, j)
+                elif L[j][i] == 1:
+                    self.button_change_color("sandy brown", i, j)
+                elif L[j][i] == 2:
+                    self.button_change_color("SteelBlue2", i, j)
+                elif L[j][i] == 3:
+                    self.button_change_color("violet", i, j)
+                elif L[j][i] == 4:
+                    self.button_change_color("goldenrod2", i, j)
 
     def create(self):
         if self.__bool_start and self.__bool_end:
             self.__error_generate.grid_forget()
 
-            self.__lab = Labyrinth(self.__X, self.__Y)
-
-            self.__lab.start_set(self.__S[0], self.__S[1])
-            self.__lab.end_set(self.__K[0], self.__K[1])
-
-            if self.__bool_mid:
-                self.__lab.middle_set(self.__M[0], self.__M[1])
-
             self.__lab.wypisz()
+            #self.koloruj()
         else:
-            self.__error_generate.grid(row=int(self.__Y)+5, column=0, sticky=E)
-
-# *** Top interface ***
-# @param root
+            self.__error_generate.grid(row=int(self.__Y) + 5, column=0, sticky=E)
