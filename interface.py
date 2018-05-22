@@ -1,5 +1,5 @@
+from tkinter import *
 from labyrinth import *
-from algorithm import *
 
 # N = X = Kolumna
 # M = Y = Wiersz
@@ -13,7 +13,13 @@ SIZE_Y = 1
 # *** Interface ***
 
 class StartInterface(Frame):
+    """
+    Top interface, entry
+    """
     def __init__(self, master):
+        """
+        :param master: root
+        """
         super(StartInterface, self).__init__(master)
 
         self.__size_N = 0
@@ -69,14 +75,18 @@ class StartInterface(Frame):
         self.__L_Interface.change(self.__size_N, self.__size_M)
         self.__L_Interface.rysuj()
 
-
-# *** Interface ***
-# @param1, @param2, @param3
-#
 # Button, @lambda, @list_comprehensions
 
 class LabyrinthInterface(Frame):
+    """
+    Labyrinth Interface
+    """
     def __init__(self, master, X=0, Y=0):
+        """
+        :param master: root
+        :param X: columns
+        :param Y: rows
+        """
         super(LabyrinthInterface, self).__init__(master)
 
         self.__X = X
@@ -184,6 +194,6 @@ class LabyrinthInterface(Frame):
             self.__error_generate.grid_forget()
 
             self.__lab.wypisz()
-            #self.koloruj()
+            self.koloruj()
         else:
             self.__error_generate.grid(row=int(self.__Y) + 5, column=0, sticky=E)

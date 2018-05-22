@@ -1,19 +1,26 @@
 import time
 
-
-# *** Bot ***
-# Function responsible for the transition of Labyrinth
-# @param1 object Labyrinth, @param2 size of x of Labyrinth, @param3 size of y of Labyrinth
+# algorithm
 
 def Bot(L, x, y, x_p, y_p):
+    """
+    Function responsible for the transition of Labyrinth
+
+    0-left, 1-down, 2-right, 3-up
+
+    :param L: object Labyrinth
+    :param x: size of x of Labyrinth
+    :param y: size of y of Labyrinth
+    :param x_p: X Start
+    :param y_p: Y Start
+    :return: Is true when passed
+    """
     i = x_p
     j = y_p
 
     # secure
 
     counter = 0
-
-    # 0-left, 1-down, 2-right, 3-up
 
     side = 0
 
@@ -63,17 +70,30 @@ def Bot(L, x, y, x_p, y_p):
 
 
 # *** Generator ***
-# Function responsible for generating labyrinth
-# @param1 x start, @param2 y start, @param3 x end, @param4 y end, @param5 rows, @param6 columns, @param7 boolean about middle point
-# @return labyrinth as a list
+# List comprehension, algorithm
 
-def generator(x_p, y_p, x_k, y_k, r_x, r_y, b):
-    L = [[0 for i in range(r_y)] for j in range(r_x)]
+def generator(x_p, y_p, x_k, y_k, r_y, r_x, b, x_m=0, y_m=0):
+    """
+    Function responsible for generating labyrinth
+
+    :param x_p: x start
+    :param y_p: y start
+    :param x_k: x end
+    :param y_k: y end
+    :param r_y: columns
+    :param r_x: rows
+    :param b: boolean about middle point
+    :param x_m: x mid
+    :param y_m: y mid
+    :return: Labyrinth as a list
+    """
+    L = [[0 for i in range(r_x)] for j in range(r_y)]
 
     L[x_p][y_p] = 2
     L[x_k][y_k] = 3
 
     if b:
-        pass
+        L[x_m][y_m] = 4
 
     return L
+

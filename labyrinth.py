@@ -1,12 +1,12 @@
-from tkinter import *
+from algorithm import *
 
-
-# *** Labyrinth ***
-# @param1, @param2 size of Labyrinth, @param3 root
 
 class Labyrinth:
     def __init__(self, X, Y):
-        # rozmiar
+        """
+        :param X: columns
+        :param Y: rows
+        """
         self.__X = X
         self.__Y = Y
 
@@ -34,7 +34,7 @@ class Labyrinth:
 
     def mid_clear(self, X, Y):
         if self.__bool_mid:
-            self.__L[Y][X] = 8
+            self.__L[Y][X] = 0
             self.__M[0] = 0
             self.__M[1] = 0
         # self.L[X][Y].change_color_bg("sandy brown")
@@ -75,13 +75,20 @@ class Labyrinth:
         return self.__L[X][Y]
 
     def generate(self):
+        """
+        Function generating labyrinth
+        :return: Created labyrinth, need to be tested
+        """
         L = [[2, 0, 0, 1, 0],
              [1, 1, 1, 1, 0],
              [0, 1, 0, 1, 0],
              [0, 1, 0, 1, 1],
              [1, 1, 0, 1, 0],
              [0, 0, 0, 1, 3]]
-        self.__L = L
+        # self.__L = L
+        # self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid)
+        self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid,
+                             self.__M[0], self.__M[1], )
         return self.__L
 
     # First rows then columns
