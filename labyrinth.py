@@ -86,9 +86,9 @@ class Labyrinth:
              [1, 1, 0, 1, 0],
              [0, 0, 0, 1, 3]]
         # self.__L = L
-        # self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid)
-        self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid,
-                             self.__M[0], self.__M[1], )
+        self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, False)
+        #self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid,
+                             #self.__M[0], self.__M[1])
         return self.__L
 
     # First rows then columns
