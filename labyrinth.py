@@ -86,10 +86,52 @@ class Labyrinth:
              [1, 1, 0, 1, 0],
              [0, 0, 0, 1, 3]]
         # self.__L = L
-        self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, False)
+        good = False
+        while not good:
+            self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X)
+            L = self.__L
+            print(self.wypisz())
+            if L[self.__S[0]][self.__S[1]] == 1:
+                print("1")
+                L[self.__S[0]][self.__S[1]] = 2
+                if L[self.__K[0]][self.__K[1]] == 1:
+                    print("2")
+                    L[self.__K[0]][self.__K[1]] = 3
+                    if self.quad():
+                        print("Q")
+                        if self.__bool_mid:
+                            print("3a")
+                            if L[self.__M[0]][self.__M[1]] == 1:
+                                print("4")
+                                L[self.__M[0]][self.__M[1]] = 4
+                                if Bot(L, self.__X, self.__Y, self.__S[0], self.__S[1]):
+                                    print("5")
+                                    good = True
+                        else:
+                            print("3b")
+                            if Bot(L, self.__X, self.__Y, self.__S[0], self.__S[1]):
+                                print("5")
+                                good = True
+
+            z = int(input("A: "))
+
+
         #self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid,
                              #self.__M[0], self.__M[1])
         return self.__L
+
+    def quad(self):
+        for i in range(0, self.__Y):
+            for j in range(0, self.__X):
+                try:
+                    if self.__L[j][i] != 0:
+                        if self.__L[j + 1][i] != 0:
+                            if self.__L[j][i+1] != 0:
+                                if self.__L[j + 1][i+1] != 0:
+                                    return False
+                except:
+                    pass
+        return True
 
     # First rows then columns
     def filling(self, L, k, w):
