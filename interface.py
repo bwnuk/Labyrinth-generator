@@ -16,6 +16,7 @@ class StartInterface(Frame):
     """
     Top interface, entry
     """
+
     def __init__(self, master):
         """
         :param master: root
@@ -51,8 +52,8 @@ class StartInterface(Frame):
             self.__size_N = int(self.__entry_N.get())
             self.__size_M = int(self.__entry_M.get())
 
-            if self.__size_N > 30 or self.__size_N < 0 or self.__size_M > 30 or self.__size_M < 0:
-                self.__label_error_value.config(text="Przedzial rozmiarow (0:30)")
+            if self.__size_N > 30 or self.__size_N < 4 or self.__size_M > 30 or self.__size_M < 4:
+                self.__label_error_value.config(text="Przedzial rozmiarow (4:30)")
                 self.__label_error_value.grid(row=3, sticky=E)
             else:
                 self.create()
@@ -75,12 +76,14 @@ class StartInterface(Frame):
         self.__L_Interface.change(self.__size_N, self.__size_M)
         self.__L_Interface.rysuj()
 
+
 # Button, @lambda, @list_comprehensions
 
 class LabyrinthInterface(Frame):
     """
     Labyrinth Interface
     """
+
     def __init__(self, master, X=0, Y=0):
         """
         :param master: root
@@ -149,7 +152,8 @@ class LabyrinthInterface(Frame):
             return False
 
     def set_mid(self, k, w):
-        if w == int(self.__lab.start_get()[1]) and k == int(self.__lab.start_get()[0]) or w == int(self.__lab.end_get()[1]) and k == int(self.__lab.end_get()[0]):
+        if w == int(self.__lab.start_get()[1]) and k == int(self.__lab.start_get()[0]) or w == int(
+                self.__lab.end_get()[1]) and k == int(self.__lab.end_get()[0]):
             pass
         else:
             self.button_change_color("goldenrod2", k, w)
@@ -166,7 +170,7 @@ class LabyrinthInterface(Frame):
     # k = X = Kolumna
     # w = Y = Wiersz
     def clicked(self, k, w):
-        #print(k, w)
+        # print(k, w)
         if not self.__bool_start:
             self.__bool_start = self.set_start(k, w)
         elif not self.__bool_end:

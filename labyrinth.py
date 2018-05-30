@@ -87,7 +87,9 @@ class Labyrinth:
              [0, 0, 0, 1, 3]]
         # self.__L = L
         good = False
+        counter = 0
         while not good:
+            counter = counter + 1
             self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X)
             L = self.__L
             print(self.wypisz())
@@ -112,9 +114,7 @@ class Labyrinth:
                             if Bot(L, self.__X, self.__Y, self.__S[0], self.__S[1]):
                                 print("5")
                                 good = True
-
-            z = int(input("A: "))
-
+            print(counter)
 
         #self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid,
                              #self.__M[0], self.__M[1])

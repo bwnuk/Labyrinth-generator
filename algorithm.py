@@ -103,6 +103,7 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
     L[t_x][t_y] = 1
     it = 0
     r = 0
+    b = False
     direction = 0
 
     while remaining > 0:
@@ -116,8 +117,14 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
                 else:
-                    huntR(L, r, r_y)
-                    r = r + 1
+                    if not b:
+                        b = False
+                        remaining = huntR(L, t_x, r_y, remaining)
+                    else:
+                        t_y = t_y - 1
+                        L[t_x][t_y] = 1
+                        b = True
+                        continue
         elif direction == 1:
             if check_boundaries(t_x + 1, r_y):
                 if L[t_x + 1][t_y] == 8:
@@ -125,8 +132,14 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
                 else:
-                    huntR(L, r, r_y)
-                    r = r + 1
+                    if not b:
+                        b = False
+                        remaining = huntR(L, t_x, r_y, remaining)
+                    else:
+                        t_x = t_x + 1
+                        L[t_x][t_y] = 1
+                        b = True
+                        continue
         elif direction == 2:
             if check_boundaries(t_x - 1, r_y):
                 if L[t_x - 1][t_y] == 8:
@@ -134,8 +147,14 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
                 else:
-                    huntR(L, r, r_y)
-                    r = r + 1
+                    if not b:
+                        b = False
+                        remaining = huntR(L, t_x, r_y, remaining)
+                    else:
+                        t_x = t_x - 1
+                        L[t_x][t_y] = 1
+                        b = True
+                        continue
         elif direction == 3:
             if check_boundaries(t_y + 1, r_y):
                 if L[t_x][t_y + 1] == 8:
@@ -143,26 +162,31 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
                 else:
-                    huntR(L, r, r_y)
-                    r = r + 1
+                    if not b:
+                        b = False
+                        remaining = huntR(L, t_x, r_y, remaining)
+                    else:
+                        t_y = t_y + 1
+                        L[t_x][t_y] = 1
+                        b = True
+                        continue
         else:
-            hunt(L, r_x, r_y)
+            remaining = huntR(L, t_x, r_y, remaining)
+            r = r + 1
 
         if L[x_k][y_k] == 1:
+            hunt(L, r_x, r_y)
+            return L
+
+        it = it + 1
+
+        if it > 1390900:
             hunt(L, r_x, r_y)
             return L
 
         if remaining == 0:
             hunt(L, r_x, r_y)
             return L
-
-        it = it + 1
-
-        if it > 10000:
-            hunt(L, r_x, r_y)
-            return L
-
-        print(it)
 
     return L
 
@@ -174,13 +198,15 @@ def hunt(L, r_x, r_y):
                 L[j][i] = 0
 
 
-def huntR(L, r, r_y):
+def huntR(L, r, r_y, k):
     try:
         for i in range(0, r_y):
             if L[r][i] == 8:
                 L[r][i] = 0
+                k = k - 1
     except:
         print(r)
+    return k
 
 
 def reset_lab(x_p, y_p, x_k, y_k, r_y, r_x, ):
