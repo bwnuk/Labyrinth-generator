@@ -76,7 +76,7 @@ def Bot(L, x, y, x_p, y_p):
 # List comprehension, algorithm
 # Hunt and Kill
 
-def generator(x_p, y_p, x_k, y_k, r_y, r_x, L, dx=11890999):
+def generator(x_p, y_p, x_k, y_k, r_y, r_x, L, dx=1189099):
     """
     Function responsible for generating labyrinth
     Hunt and Kill algorithm
@@ -91,9 +91,10 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, L, dx=11890999):
     :return: Labyrinth as a list
     """
 
-    # L = [[8 for i in range(r_x)] for j in range(r_y)]
+    #L = [[8 for i in range(r_x)] for j in range(r_y)]
     List = []
 
+    print(" ")
     remaining = r_y * r_x
 
     t_x = x_p
@@ -105,13 +106,14 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, L, dx=11890999):
     it = 0
     r = 0
     b = 0
+    change = 0
 
     o_x, o_y = t_x, t_y
-    d = r_x // 3
+    d = r_x //3
 
     endo = False
 
-    if d == 0:
+    if d ==0:
         d = 1
 
     dp = d // 2
@@ -125,118 +127,88 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, L, dx=11890999):
         if direction == 0:
             if check_boundaries(t_y - 1, r_y):
                 if L[t_x][t_y - 1] == 8:
+                    change = change + 1
                     t_y = t_y - 1
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
                     List.append([t_x, t_y])
                     List_counter = List_counter + 1
                 else:
-                    if b >= d:
-                        b = 0
-                        remaining = huntR(L, t_x, r_y, remaining)
-                    elif b == dp:
+                    change = change + 1
+                    if change > 5:
+                        change = 0
                         t_x = o_x
                         t_y = o_y
-                        b = b + 1
-                        continue
-                    else:
-                        o_x, o_y = t_x, t_y
-                        b = b + 1
-                        continue
         elif direction == 1:
             if check_boundaries(t_x + 1, r_y):
                 if L[t_x + 1][t_y] == 8:
+                    change = change + 1
                     t_x = t_x + 1
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
                     List.append([t_x, t_y])
                     List_counter = List_counter + 1
                 else:
-                    if b >= d:
-                        b = 0
-                        remaining = huntR(L, t_x, r_y, remaining)
-                    elif b == dp:
+                    change = change + 1
+                    if change > 5:
+                        change = 0
                         t_x = o_x
                         t_y = o_y
-                        b = b + 1
-                        continue
-                    else:
-                        o_x, o_y = t_x, t_y
-                        b = b + 1
-                        continue
         elif direction == 2:
             if check_boundaries(t_x - 1, r_y):
                 if L[t_x - 1][t_y] == 8:
+                    change = change + 1
                     t_x = t_x - 1
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
                     List.append([t_x, t_y])
                     List_counter = List_counter + 1
                 else:
-                    if b >= d:
-                        b = 0
-                        remaining = huntR(L, t_x, r_y, remaining)
-                    elif b == dp:
+                    change = change + 1
+                    if change > 5:
+                        change = 0
                         t_x = o_x
                         t_y = o_y
-                        b = b + 1
-                        continue
-                    else:
-                        o_x, o_y = t_x, t_y
-                        b = b + 1
-                        continue
         elif direction == 3:
             if check_boundaries(t_y + 1, r_y):
                 if L[t_x][t_y + 1] == 8:
+                    change = change + 1
                     t_y = t_y + 1
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
                     List.append([t_x, t_y])
                     List_counter = List_counter + 1
                 else:
-                    if b >= d:
-                        b = 0
-                        remaining = huntR(L, t_x, r_y, remaining)
-                    elif b == dp:
+                    change = change + 1
+                    if change > 5:
+                        change = 0
                         t_x = o_x
                         t_y = o_y
-                        b = b + 1
-                        continue
-                    else:
-                        o_x, o_y = t_x, t_y
-                        b = b + 1
-                        continue
         else:
             remaining = huntR(L, t_x, r_y, remaining)
             r = r + 1
 
         if L[x_k][y_k] == 1:
-            print(t_x, t_y)
+            #print(t_x, t_y)
             t_x, t_y = koniec(L, r_x, r_y, List_counter, List)
             print("KONIEC")
-            print(t_x, t_y)
+            #print(t_x, t_y)
             it = it - 1000
-            if endo:
-                hunt(L, r_x, r_y)
-                return L
-            else:
-                print(L)
-            endo = True
+            hunt(L, r_x, r_y)
+            return L
 
         it = it + 1
+        if change > 3:
+            o_x, o_y = t_x, t_y
 
         if it > dx:
             print("ITERR")
-            print(t_x, t_y)
+            #print(t_x, t_y)
             t_x, t_y = koniec(L, r_x, r_y, List_counter, List)
-            print(t_x, t_y)
+            #print(t_x, t_y)
             it = it - 1000
-            if endo:
-                hunt(L, r_x, r_y)
-                return L
-            else:
-                print(L)
-            endo = True
+
+            return L
 
         if remaining < 2:
             hunt(L, r_x, r_y)
@@ -246,6 +218,7 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, L, dx=11890999):
 
 
 def hunt(L, r_x, r_y):
+    print("HUNT")
     for i in range(0, r_y):
         for j in range(0, r_x):
             if L[j][i] == 8:
@@ -254,6 +227,7 @@ def hunt(L, r_x, r_y):
 
 def huntR(L, r, r_y, k):
     try:
+        print("HR")
         for i in range(0, r_y):
             if L[r][i] == 8:
                 L[r][i] = 0
@@ -265,14 +239,12 @@ def huntR(L, r, r_y, k):
 
 def koniec(L, r_x, r_y, List_counter, List):
     r = randint(0, List_counter - 2)
-    print(" - - ", r, List[r])
+    #print(" - - ", r, List[r])
     hunt(L, r_x, r_y)
     return List[r]
 
-
 def walk():
     pass
-
 
 def reset_lab(x_p, y_p, x_k, y_k, r_y, r_x, ):
     """
@@ -299,5 +271,12 @@ def check_boundaries(x, r):
     if x >= r or x < 0:
         return False
     return True
+
+
+def pisz():
+    for i in range(int(Y)):
+        for j in range(int(X)):
+            print(L[i][j], end=" ")
+        print("")
 
 # Values 0-wall, 1-road, 2-entrance, 3-exit, 4-middle

@@ -22,7 +22,7 @@ class Labyrinth:
         for i in range(int(self.__Y)):
             for j in range(int(self.__X)):
                 print(self.__L[i][j], end=" ")
-            print("")
+            print(" ")
 
     def wall_set(self, X, Y):
         self.__L[X][Y] = 0
@@ -92,7 +92,7 @@ class Labyrinth:
         while not good:
             L = [[8 for i in range(self.__Y)] for j in range(self.__X)]
             counter = counter + 1
-            self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, L, 111111)
+            self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, L)
             L = self.__L
             print(self.wypisz())
             if L[self.__S[0]][self.__S[1]] == 1:
