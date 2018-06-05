@@ -79,28 +79,31 @@ class Labyrinth:
         Function generating labyrinth
         :return: Created labyrinth, need to be tested
         """
-        L = [[2, 0, 0, 1, 0],
+        L1 = [[2, 0, 0, 1, 0],
              [1, 1, 1, 1, 0],
              [0, 1, 0, 1, 0],
              [0, 1, 0, 1, 1],
              [1, 1, 0, 1, 0],
              [0, 0, 0, 1, 3]]
+        L = [[8 for i in range(self.__Y)] for j in range(self.__X)]
         # self.__L = L
         good = False
         counter = 0
         while not good:
+            L = [[8 for i in range(self.__Y)] for j in range(self.__X)]
             counter = counter + 1
-            self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X)
+            self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, L, 111111)
             L = self.__L
             print(self.wypisz())
             if L[self.__S[0]][self.__S[1]] == 1:
                 print("1")
-                L[self.__S[0]][self.__S[1]] = 2
                 if L[self.__K[0]][self.__K[1]] == 1:
                     print("2")
-                    L[self.__K[0]][self.__K[1]] = 3
                     if self.quad():
                         print("Q")
+                        L[self.__S[0]][self.__S[1]] = 2
+                        L[self.__K[0]][self.__K[1]] = 3
+
                         if self.__bool_mid:
                             print("3a")
                             if L[self.__M[0]][self.__M[1]] == 1:
@@ -118,6 +121,7 @@ class Labyrinth:
 
         #self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid,
                              #self.__M[0], self.__M[1])
+
         return self.__L
 
     def quad(self):

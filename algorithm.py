@@ -28,37 +28,36 @@ def Bot(L, x, y, x_p, y_p):
     side = 0
 
     while L[i][j] != 3:
-        # print(L.get_value(i, j), i, j, side)
         try:
             if side == 0:
                 # dol
-                if L[i + 1][j] == 1 or L[i + 1][j] == 3 or L.get_value[i + 1][j] == 4:
+                if L[i + 1][j] == 1 or L[i + 1][j] == 3 or L[i + 1][j] == 4:
                     i = i + 1
                 # lewo
-                elif L[i][j - 1] == 1 or L[i][j - 1] == 3 or L.get_value[i][j - 1] == 4:
+                elif L[i][j - 1] == 1 or L[i][j - 1] == 3 or L[i][j - 1] == 4:
                     j = j - 1
                 # prawo
-                elif L[i][j + 1] == 1 or L[i][j + 1] == 3 or L.get_value[i][j + 1] == 4:
+                elif L[i][j + 1] == 1 or L[i][j + 1] == 3 or L[i][j + 1] == 4:
                     side = 1
                 # gora
-                elif L[i - 1][j] == 1 or L[i - 1][j] == 3 or L.get_value[i - 1][j] == 4:
+                elif L[i - 1][j] == 1 or L[i - 1][j] == 3 or L[i - 1][j] == 4:
                     i = i - 1
             elif side == 1:
-                if L[i][j + 1] == 1 or L[i][j + 1] == 3 or L.get_value[i][j + 1] == 4:
+                if L[i][j + 1] == 1 or L[i][j + 1] == 3 or L[i][j + 1] == 4:
                     j = j + 1
-                elif L[i + 1][j] == 1 or L[i + 1][j] == 3 or L.get_value[i + 1][j] == 4:
+                elif L[i + 1][j] == 1 or L[i + 1][j] == 3 or L[i + 1][j] == 4:
                     side = 0
-                elif L[i - 1][j] == 1 or L[i - 1][j] == 3 or L.get_value[i - 1][j] == 4:
+                elif L[i - 1][j] == 1 or L[i - 1][j] == 3 or L[i - 1][j] == 4:
                     side = 2
-                elif L[i][j - 1] == 1 or L[i][j - 1] == 3 or L.get_value[i][j - 1] == 4:
+                elif L[i][j - 1] == 1 or L[i][j - 1] == 3 or L[i][j - 1] == 4:
                     j = j - 1
             elif side == 2:
-                if L[i - 1][j] == 1 or L[i - 1][j] == 3 or L.get_value[i - 1][j] == 4:
+                if L[i - 1][j] == 1 or L[i - 1][j] == 3 or L[i - 1][j] == 4:
                     i = i - 1
-                elif L[i][j + 1] == 1 or L[i][j + 1] == 3 or L.get_value[i][j + 1] == 4:
+                elif L[i][j + 1] == 1 or L[i][j + 1] == 3 or L[i][j + 1] == 4:
                     j = j + 1
                     side = 1
-                elif L[i][j - 1] == 1 or L[i][j - 1] == 3 or L.get_value[i][j - 1] == 4:
+                elif L[i][j - 1] == 1 or L[i][j - 1] == 3 or L[i][j - 1] == 4:
                     j = j - 1
         except:
             if side != 2:
@@ -67,7 +66,7 @@ def Bot(L, x, y, x_p, y_p):
                 side = 0
 
         counter = counter + 1
-        if counter >= 10000:
+        if counter >= 100000:
             print("ZA DUZO")
             return False
     return True
@@ -77,7 +76,7 @@ def Bot(L, x, y, x_p, y_p):
 # List comprehension, algorithm
 # Hunt and Kill
 
-def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
+def generator(x_p, y_p, x_k, y_k, r_y, r_x, L, dx=11890999):
     """
     Function responsible for generating labyrinth
     Hunt and Kill algorithm
@@ -88,12 +87,12 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
     :param y_k: y end
     :param r_y: columns
     :param r_x: rows
-    :param b: boolean about middle point
-    :param x_m: x mid
-    :param y_m: y mid
+    :param dx: itterators
     :return: Labyrinth as a list
     """
-    L = [[8 for i in range(r_x)] for j in range(r_y)]
+
+    # L = [[8 for i in range(r_x)] for j in range(r_y)]
+    List = []
 
     remaining = r_y * r_x
 
@@ -101,11 +100,24 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
     t_y = y_p
 
     L[t_x][t_y] = 1
+
+    List_counter = 0
     it = 0
     r = 0
-    b = False
-    direction = 0
+    b = 0
 
+    o_x, o_y = t_x, t_y
+    d = r_x // 3
+
+    endo = False
+
+    if d == 0:
+        d = 1
+
+    dp = d // 2
+
+    if dp == 0:
+        dp = 144
     while remaining > 0:
         # walk
         direction = random_direction()
@@ -116,14 +128,20 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
                     t_y = t_y - 1
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
+                    List.append([t_x, t_y])
+                    List_counter = List_counter + 1
                 else:
-                    if not b:
-                        b = False
+                    if b >= d:
+                        b = 0
                         remaining = huntR(L, t_x, r_y, remaining)
+                    elif b == dp:
+                        t_x = o_x
+                        t_y = o_y
+                        b = b + 1
+                        continue
                     else:
-                        t_y = t_y - 1
-                        L[t_x][t_y] = 1
-                        b = True
+                        o_x, o_y = t_x, t_y
+                        b = b + 1
                         continue
         elif direction == 1:
             if check_boundaries(t_x + 1, r_y):
@@ -131,14 +149,20 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
                     t_x = t_x + 1
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
+                    List.append([t_x, t_y])
+                    List_counter = List_counter + 1
                 else:
-                    if not b:
-                        b = False
+                    if b >= d:
+                        b = 0
                         remaining = huntR(L, t_x, r_y, remaining)
+                    elif b == dp:
+                        t_x = o_x
+                        t_y = o_y
+                        b = b + 1
+                        continue
                     else:
-                        t_x = t_x + 1
-                        L[t_x][t_y] = 1
-                        b = True
+                        o_x, o_y = t_x, t_y
+                        b = b + 1
                         continue
         elif direction == 2:
             if check_boundaries(t_x - 1, r_y):
@@ -146,14 +170,20 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
                     t_x = t_x - 1
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
+                    List.append([t_x, t_y])
+                    List_counter = List_counter + 1
                 else:
-                    if not b:
-                        b = False
+                    if b >= d:
+                        b = 0
                         remaining = huntR(L, t_x, r_y, remaining)
+                    elif b == dp:
+                        t_x = o_x
+                        t_y = o_y
+                        b = b + 1
+                        continue
                     else:
-                        t_x = t_x - 1
-                        L[t_x][t_y] = 1
-                        b = True
+                        o_x, o_y = t_x, t_y
+                        b = b + 1
                         continue
         elif direction == 3:
             if check_boundaries(t_y + 1, r_y):
@@ -161,30 +191,54 @@ def generator(x_p, y_p, x_k, y_k, r_y, r_x, ):
                     t_y = t_y + 1
                     remaining = remaining - 1
                     L[t_x][t_y] = 1
+                    List.append([t_x, t_y])
+                    List_counter = List_counter + 1
                 else:
-                    if not b:
-                        b = False
+                    if b >= d:
+                        b = 0
                         remaining = huntR(L, t_x, r_y, remaining)
+                    elif b == dp:
+                        t_x = o_x
+                        t_y = o_y
+                        b = b + 1
+                        continue
                     else:
-                        t_y = t_y + 1
-                        L[t_x][t_y] = 1
-                        b = True
+                        o_x, o_y = t_x, t_y
+                        b = b + 1
                         continue
         else:
             remaining = huntR(L, t_x, r_y, remaining)
             r = r + 1
 
         if L[x_k][y_k] == 1:
-            hunt(L, r_x, r_y)
-            return L
+            print(t_x, t_y)
+            t_x, t_y = koniec(L, r_x, r_y, List_counter, List)
+            print("KONIEC")
+            print(t_x, t_y)
+            it = it - 1000
+            if endo:
+                hunt(L, r_x, r_y)
+                return L
+            else:
+                print(L)
+            endo = True
 
         it = it + 1
 
-        if it > 1390900:
-            hunt(L, r_x, r_y)
-            return L
+        if it > dx:
+            print("ITERR")
+            print(t_x, t_y)
+            t_x, t_y = koniec(L, r_x, r_y, List_counter, List)
+            print(t_x, t_y)
+            it = it - 1000
+            if endo:
+                hunt(L, r_x, r_y)
+                return L
+            else:
+                print(L)
+            endo = True
 
-        if remaining == 0:
+        if remaining < 2:
             hunt(L, r_x, r_y)
             return L
 
@@ -207,6 +261,17 @@ def huntR(L, r, r_y, k):
     except:
         print(r)
     return k
+
+
+def koniec(L, r_x, r_y, List_counter, List):
+    r = randint(0, List_counter - 2)
+    print(" - - ", r, List[r])
+    hunt(L, r_x, r_y)
+    return List[r]
+
+
+def walk():
+    pass
 
 
 def reset_lab(x_p, y_p, x_k, y_k, r_y, r_x, ):
