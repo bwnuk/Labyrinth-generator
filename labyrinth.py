@@ -92,8 +92,9 @@ class Labyrinth:
         while not good:
             L = [[8 for i in range(self.__Y)] for j in range(self.__X)]
             counter = counter + 1
-            self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, L)
+            self.__L = generator(self.__Y, self.__X)
             L = self.__L
+            print(" ")
             print(self.wypisz())
             if L[self.__S[0]][self.__S[1]] == 1:
                 print("1")
