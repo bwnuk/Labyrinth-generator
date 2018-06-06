@@ -1,5 +1,7 @@
 from tkinter import *
 from labyrinth import *
+from Exceptions import *
+from math import *
 
 # N = X = Kolumna
 # M = Y = Wiersz
@@ -98,10 +100,6 @@ class LabyrinthInterface(Frame):
         self.__L = 0
         self.__lab = 0
 
-        self.__S = [0, 0]
-        self.__K = [0, 0]
-        self.__M = [0, 0]
-
         self.__bool_start = False
         self.__bool_end = False
         self.__bool_mid = False
@@ -136,7 +134,7 @@ class LabyrinthInterface(Frame):
         self.__L[Y][X].config(bg=color)
 
     def set_start(self, k, w):
-        if k >= 0 and w == 0 or k == 0 and w >= 0:
+        if k >= 0 and w == 0 or k == 0 and w >= 0 or w == self.__Y - 1 and k >= 0 or k == self.__X - 1 and w >= 0:
             self.button_change_color("SteelBlue2", k, w)
             self.__lab.start_set(w, k)
             return True
@@ -144,28 +142,51 @@ class LabyrinthInterface(Frame):
             return False
 
     def set_end(self, k, w):
-        if w == self.__Y - 1 and k >= 0 or k == self.__X - 1 and w >= 0:
-            self.button_change_color("violet", k, w)
-            self.__lab.end_set(w, k)
-            return True
-        else:
+        try:
+            if w == self.__lab.start_get()[0] and k == self.__lab.start_get()[1]:
+                raise SetError("Start", "Koniec")
+            else:
+                if k >= 0 and w == 0 or k == 0 and w >= 0 or w == self.__Y - 1 and k >= 0 or k == self.__X - 1 and w >= 0:
+                    if fabs(w-self.__lab.start_get()[0]) + fabs(k - self.__lab.start_get()[1]) < 4:
+                        raise DistanceError()
+                    else:
+                        self.button_change_color("violet", k, w)
+                        self.__lab.end_set(w, k)
+                        self.__error_generate.grid_forget()
+                        return True
+                else:
+                    return False
+        except SetError as e:
+            self.__error_generate.config(text=e.Message_Get())
+            self.__error_generate.grid(row=int(self.__Y) + 5, column=0, sticky=E)
+            return False
+        except DistanceError as e:
+            self.__error_generate.config(text=e.Message_Get())
+            self.__error_generate.grid(row=int(self.__Y) + 5, column=0, sticky=E)
             return False
 
     def set_mid(self, k, w):
-        if w == int(self.__lab.start_get()[1]) and k == int(self.__lab.start_get()[0]) or w == int(
-                self.__lab.end_get()[1]) and k == int(self.__lab.end_get()[0]):
+        try:
+            if w == int(self.__lab.start_get()[0]) and k == int(self.__lab.start_get()[1]) or w == int(
+                    self.__lab.end_get()[0]) and k == int(self.__lab.end_get()[1]):
+                raise SetError("Posredni", "Start/Koniec")
+            else:
+
+                self.button_change_color("goldenrod2", k, w)
+
+                if self.__bool_mid:
+                    self.button_change_color("PaleTurquoise2", self.__lab.mid_get()[1], self.__lab.mid_get()[0])
+                    self.__lab.mid_clear(self.__lab.mid_get()[1], self.__lab.mid_get()[0])
+
+                self.__lab.mid_set(w, k)
+                self.__bool_mid = True
+
+                return True
+        except SetError as e:
+            self.__error_generate.config(text=e.Message_Get())
+            self.__error_generate.grid(row=int(self.__Y) + 5, column=0, sticky=E)
             pass
-        else:
-            self.button_change_color("goldenrod2", k, w)
 
-            if self.__bool_mid:
-                self.button_change_color("PaleTurquoise2", self.__lab.mid_get()[1], self.__lab.mid_get()[0])
-                self.__lab.mid_clear(self.__lab.mid_get()[1], self.__lab.mid_get()[0])
-
-            self.__lab.mid_set(w, k)
-            self.__bool_mid = True
-
-            return True
 
     # k = X = Kolumna
     # w = Y = Wiersz
