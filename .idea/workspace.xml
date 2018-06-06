@@ -4,7 +4,6 @@
     <list default="true" id="f4a4fe55-a59e-4c3f-9585-91d38e8a8ff6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labyrinth.py" beforeDir="false" afterPath="$PROJECT_DIR$/labyrinth.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +13,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Labyrinth_generator$main.coverage" NAME="main Coverage Results" MODIFIED="1528220150564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Labyrinth_generator$main.coverage" NAME="main Coverage Results" MODIFIED="1528280541517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Labyrinth_generator$pp.coverage" NAME="pp Coverage Results" MODIFIED="1528281277182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Labyrinth_generator$interface.coverage" NAME="interface Coverage Results" MODIFIED="1524919436161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -31,10 +31,20 @@
       <file leaf-file-name="interface.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/interface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="54" column="97" selection-start-line="54" selection-start-column="97" selection-end-line="54" selection-end-column="97" />
+            <state relative-caret-position="323">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#184#2262#0" />
+                <element signature="e#2343#2378#1" />
+                <element signature="e#2430#3000#0" />
+                <element signature="e#3038#3122#0" />
+                <element signature="e#3202#3868#0" />
+                <element signature="e#3998#4199#0" />
+                <element signature="e#4238#4455#0" />
+                <element signature="e#4494#5080#0" />
+                <element signature="e#5162#5390#0" />
+                <element signature="e#6065#6310#0" />
               </folding>
             </state>
           </provider>
@@ -43,20 +53,21 @@
       <file leaf-file-name="labyrinth.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/labyrinth.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="98" column="21" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="21" />
+            <state relative-caret-position="457">
+              <caret line="62" selection-start-line="62" selection-end-line="62" />
               <folding>
                 <element signature="e#81#370#0" />
-                <element signature="e#605#678#0" />
-                <element signature="e#718#790#0" />
-                <element signature="e#831#991#0" />
-                <element signature="e#1030#1181#0" />
-                <element signature="e#1214#1229#0" />
-                <element signature="e#1270#1390#0" />
-                <element signature="e#1425#1440#0" />
-                <element signature="e#1479#1595#0" />
-                <element signature="e#1628#1643#0" />
-                <element signature="e#1720#1741#0" />
+                <element signature="e#606#679#0" />
+                <element signature="e#719#791#0" />
+                <element signature="e#832#992#0" />
+                <element signature="e#1031#1182#0" />
+                <element signature="e#1215#1230#0" />
+                <element signature="e#1271#1391#0" />
+                <element signature="e#1426#1441#0" />
+                <element signature="e#1480#1596#0" />
+                <element signature="e#1629#1644#0" />
+                <element signature="e#1721#1742#0" />
+                <element signature="e#4268#4695#0" />
               </folding>
             </state>
           </provider>
@@ -65,16 +76,21 @@
       <file leaf-file-name="algorithm.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/algorithm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="136" column="39" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+            <state relative-caret-position="373">
+              <caret line="206" selection-start-line="206" selection-end-line="207" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#474#2103#0" />
-                <element signature="e#2256#2542#1" />
-                <element signature="e#7558#7735#0" />
-                <element signature="e#7766#7842#0" />
-                <element signature="e#7877#7962#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pp.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -98,7 +114,9 @@
       <find>8</find>
       <find>Bot</find>
       <find>end</find>
+      <find>hunt</find>
       <find>print</find>
+      <find>pisz</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,6 +135,7 @@
         <option value="$PROJECT_DIR$/interface.py" />
         <option value="$PROJECT_DIR$/labyrinth.py" />
         <option value="$PROJECT_DIR$/algorithm.py" />
+        <option value="$PROJECT_DIR$/pp.py" />
       </list>
     </option>
   </component>
@@ -150,11 +169,6 @@
               <item name="Labyrinth-generator" type="b2602c69:ProjectViewProjectNode" />
               <item name="Labyrinth-generator" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Labyrinth-generator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Labyrinth-generator" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -181,7 +195,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.pp">
     <configuration name="example" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Labyrinth-generator" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -239,18 +253,38 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="pp" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Labyrinth-generator" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <list>
       <item itemvalue="Python.main" />
       <item itemvalue="Python.interface" />
       <item itemvalue="Python.example" />
+      <item itemvalue="Python.pp" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.pp" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.example" />
         <item itemvalue="Python.interface" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.interface" />
       </list>
     </recent_temporary>
   </component>
@@ -405,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1528216716418</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Trying to improve algorithm #3">
+      <created>1528220166046</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1528220166046</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -419,7 +460,7 @@
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32943678" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.496875" visible="true" weight="0.28161532" />
       <window_info anchor="bottom" id="Terminal" order="11" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947916" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -434,6 +475,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.32943678" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,21 +505,15 @@
     <MESSAGE value="Generating is working. Not so good." />
     <MESSAGE value="Trying to improve algorithm." />
     <MESSAGE value="Trying to improve algorithm #2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying to improve algorithm #2" />
+    <MESSAGE value="Trying to improve algorithm #3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trying to improve algorithm #3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/labyrinth.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -498,6 +534,16 @@
           <caret line="351" selection-start-line="351" selection-end-line="369" selection-end-column="18" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -529,6 +575,16 @@
           <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -560,6 +616,16 @@
           <caret line="234" column="134" selection-start-line="234" selection-start-column="134" selection-end-line="234" selection-end-column="134" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -591,6 +657,16 @@
           <caret line="234" column="134" selection-start-line="234" selection-start-column="134" selection-end-line="234" selection-end-column="134" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -622,6 +698,16 @@
           <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -639,6 +725,16 @@
           <caret line="230" column="21" selection-start-line="230" selection-start-column="21" selection-end-line="230" selection-end-column="21" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -670,6 +766,16 @@
           <caret line="139" column="20" lean-forward="true" selection-start-line="139" selection-start-column="20" selection-end-line="139" selection-end-column="20" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -701,6 +807,16 @@
           <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -725,6 +841,16 @@
           <caret line="42" column="37" selection-start-line="42" selection-start-column="37" selection-end-line="42" selection-end-column="37" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
@@ -830,45 +956,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/interface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="54" column="97" selection-start-line="54" selection-start-column="97" selection-end-line="54" selection-end-column="97" />
+        <state relative-caret-position="323">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#184#2262#0" />
+            <element signature="e#2343#2378#1" />
+            <element signature="e#2430#3000#0" />
+            <element signature="e#3038#3122#0" />
+            <element signature="e#3202#3868#0" />
+            <element signature="e#3998#4199#0" />
+            <element signature="e#4238#4455#0" />
+            <element signature="e#4494#5080#0" />
+            <element signature="e#5162#5390#0" />
+            <element signature="e#6065#6310#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/labyrinth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="98" column="21" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="21" />
+        <state relative-caret-position="457">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
           <folding>
             <element signature="e#81#370#0" />
-            <element signature="e#605#678#0" />
-            <element signature="e#718#790#0" />
-            <element signature="e#831#991#0" />
-            <element signature="e#1030#1181#0" />
-            <element signature="e#1214#1229#0" />
-            <element signature="e#1270#1390#0" />
-            <element signature="e#1425#1440#0" />
-            <element signature="e#1479#1595#0" />
-            <element signature="e#1628#1643#0" />
-            <element signature="e#1720#1741#0" />
+            <element signature="e#606#679#0" />
+            <element signature="e#719#791#0" />
+            <element signature="e#832#992#0" />
+            <element signature="e#1031#1182#0" />
+            <element signature="e#1215#1230#0" />
+            <element signature="e#1271#1391#0" />
+            <element signature="e#1426#1441#0" />
+            <element signature="e#1480#1596#0" />
+            <element signature="e#1629#1644#0" />
+            <element signature="e#1721#1742#0" />
+            <element signature="e#4268#4695#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="136" column="39" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+        <state relative-caret-position="373">
+          <caret line="206" selection-start-line="206" selection-end-line="207" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#474#2103#0" />
-            <element signature="e#2256#2542#1" />
-            <element signature="e#7558#7735#0" />
-            <element signature="e#7766#7842#0" />
-            <element signature="e#7877#7962#0" />
           </folding>
         </state>
       </provider>
