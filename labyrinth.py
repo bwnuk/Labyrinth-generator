@@ -79,18 +79,12 @@ class Labyrinth:
         Function generating labyrinth
         :return: Created labyrinth, need to be tested
         """
-        L1 = [[2, 0, 0, 1, 0],
-             [1, 1, 1, 1, 0],
-             [0, 1, 0, 1, 0],
-             [0, 1, 0, 1, 1],
-             [1, 1, 0, 1, 0],
-             [0, 0, 0, 1, 3]]
-        L = [[8 for i in range(self.__Y)] for j in range(self.__X)]
-        # self.__L = L
+
         good = False
         counter = 0
+        R = []
+        
         while not good:
-            L = [[8 for i in range(self.__Y)] for j in range(self.__X)]
             counter = counter + 1
             self.__L = generator(self.__Y, self.__X)
             L = self.__L
@@ -110,18 +104,15 @@ class Labyrinth:
                             if L[self.__M[0]][self.__M[1]] == 1:
                                 print("4")
                                 L[self.__M[0]][self.__M[1]] = 4
-                                if Bot(L, self.__X, self.__Y, self.__S[0], self.__S[1]):
+                                if Bot(L, self.__S[0], self.__S[1], R):
                                     print("5")
                                     good = True
                         else:
                             print("3b")
-                            if Bot(L, self.__X, self.__Y, self.__S[0], self.__S[1]):
+                            if Bot(L, self.__S[0], self.__S[1], R):
                                 print("5")
                                 good = True
             print(counter)
-
-        #self.__L = generator(self.__S[0], self.__S[1], self.__K[0], self.__K[1], self.__Y, self.__X, self.__bool_mid,
-                             #self.__M[0], self.__M[1])
 
         return self.__L
 
