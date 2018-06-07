@@ -79,17 +79,32 @@ class Labyrinth:
         Function generating labyrinth
         :return: Created labyrinth, need to be tested
         """
+        L1 = [[2, 0, 0, 1, 0],
+              [1, 1, 1, 1, 0],
+              [0, 0, 0, 1, 0],
+              [0, 1, 0, 1, 1],
+              [1, 1, 0, 1, 0],
+              [0, 0, 0, 1, 3]]
 
         good = False
         counter = 0
         R = []
-        
+
         while not good:
             counter = counter + 1
+
             self.__L = generator(self.__Y, self.__X)
+            self.__L = L1
             L = self.__L
+
             print(" ")
+
             print(self.wypisz())
+            if Bot(L, self.__S[0], self.__S[1], R):
+                print("5")
+                good = True
+
+
             if L[self.__S[0]][self.__S[1]] == 1:
                 print("1")
                 if L[self.__K[0]][self.__K[1]] == 1:
@@ -112,6 +127,7 @@ class Labyrinth:
                             if Bot(L, self.__S[0], self.__S[1], R):
                                 print("5")
                                 good = True
+            z = int(input("A: "))
             print(counter)
 
         return self.__L
@@ -122,8 +138,8 @@ class Labyrinth:
                 try:
                     if self.__L[j][i] != 0:
                         if self.__L[j + 1][i] != 0:
-                            if self.__L[j][i+1] != 0:
-                                if self.__L[j + 1][i+1] != 0:
+                            if self.__L[j][i + 1] != 0:
+                                if self.__L[j + 1][i + 1] != 0:
                                     return False
                 except:
                     pass
