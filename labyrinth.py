@@ -81,7 +81,7 @@ class Labyrinth:
         """
         L1 = [[2, 0, 0, 1, 0],
               [1, 1, 1, 1, 0],
-              [0, 0, 0, 1, 0],
+              [0, 1, 0, 1, 0],
               [0, 1, 0, 1, 1],
               [1, 1, 0, 1, 0],
               [0, 0, 0, 1, 3]]
@@ -94,16 +94,11 @@ class Labyrinth:
             counter = counter + 1
 
             self.__L = generator(self.__Y, self.__X)
-            self.__L = L1
+            #self.__L = L1
             L = self.__L
 
             print(" ")
-
-            print(self.wypisz())
-            if Bot(L, self.__S[0], self.__S[1], R):
-                print("5")
-                good = True
-
+            self.wypisz()
 
             if L[self.__S[0]][self.__S[1]] == 1:
                 print("1")
@@ -119,15 +114,15 @@ class Labyrinth:
                             if L[self.__M[0]][self.__M[1]] == 1:
                                 print("4")
                                 L[self.__M[0]][self.__M[1]] = 4
-                                if Bot(L, self.__S[0], self.__S[1], R):
+                                if Bot(L, self.__S[0], self.__S[1], R, self.__K[0], self.__K[1]):
                                     print("5")
                                     good = True
                         else:
                             print("3b")
-                            if Bot(L, self.__S[0], self.__S[1], R):
+                            if Bot(L, self.__S[0], self.__S[1], R, self.__K[0], self.__K[1]):
                                 print("5")
                                 good = True
-            z = int(input("A: "))
+            #z = int(input("A: "))
             print(counter)
 
         return self.__L

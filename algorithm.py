@@ -5,7 +5,7 @@ from random import *
 # algorithm
 
 
-def Bot(L, x_p, y_p, R):
+def Bot(L, x_p, y_p, R, x, y):
     """
     Function responsible for the transition of Labyrinth
 
@@ -28,7 +28,7 @@ def Bot(L, x_p, y_p, R):
     nj = y_p
 
     d = 0
-    pisz(L, 6, 5)
+    #pisz(L, 6, 5)
     # secure
     counter = 0
     cross = 0
@@ -40,54 +40,60 @@ def Bot(L, x_p, y_p, R):
             s = 0
 
             # dol - 0
-            print(L[i + 1][j])
-            if L[i + 1][j] == 1:
-                # jezeli bylismy u dolu
-                if d == 2:
-                    d = -1
+            if i + 1 <= x:
+                if L[i + 1][j] == 1 or L[i + 1][j] == 3:
+                    # jezeli bylismy u dolu
+                    if d == 2:
+                        d = -1
+                    else:
+                        d = 0
+                        s = s + 1
+                        ni = i + 1
                 else:
-                    d = 0
-                    s = s + 1
-                    ni = i + 1
+                    if s == 0:
+                        d = -1
             else:
-                if s == 0:
-                    d = -1
+                d = -1
 
             # prawo - 1
-            if L[i][j + 1] == 1:
-                if d == 3:
-                    d = -1
-                elif d == -1:
-                    d = 1
-                    nj = j + 1
-                s = s + 1
-            else:
-                if s == 0:
-                    d = -1
+            if j + 1 <= y:
+                if L[i][j + 1] == 1 or L[i][j + 1] == 3:
+                    if d == 3:
+                        d = -1
+                    elif d == -1:
+                        d = 1
+                        nj = j + 1
+                    s = s + 1
+                else:
+                    if s == 0:
+                        d = -1
 
             # gora - 2
-            if L[i - 1][j] == 1:
-                if d == 0:
-                    pass
-                if d == -1:
-                    d = 2
-                    ni = i - 1
-                s = s + 1
-            else:
-                if s == 0:
-                    d = -1
+            if i - 1 >= 0:
+                if L[i - 1][j] == 1 or L[i - 1][j] == 3:
+                    if d == 0:
+                        if s == 0:
+                            d = -1
+                    if d == -1:
+                        d = 2
+                        ni = i - 1
+                    s = s + 1
+                else:
+                    if s == 0:
+                        d = -1
 
             # lewo
-            if L[i][j - 1] == 1:
-                if d == 1:
-                    pass
-                elif d == -1:
-                    d = 3
-                    nj = j - 1
-                s = s + 1
+            if j - 1 >= 0:
+                if L[i][j - 1] == 1 or L[i][j - 1] == 3:
+                    if d == 1:
+                        pass
+                    elif d == -1:
+                        d = 3
+                        nj = j - 1
+                    s = s + 1
 
-            print( i, j, d)
-            z = int(input("A: "))
+            # print( i, j, d)
+            # z = int(input("A: "))
 
             if s == 0:
                 i = R[cross][0][0]
@@ -112,7 +118,6 @@ def Bot(L, x_p, y_p, R):
             if cross != 0:
                 return False
     return True
-
 
 
 # *** Generator ***
