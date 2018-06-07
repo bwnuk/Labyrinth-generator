@@ -37,56 +37,53 @@ def Bot(L, x_p, y_p, R):
     while L[i][j] != 3:
         try:
 
-            # dol
+            # dol - 0
             if L[i + 1][j] == 1:
+                # jezeli bylismy u dolu
                 if d == 2:
+                    d = -1
+                    # sprawdzamy prawo i lewo
                     if L[i][j + 1] == 1:
-                        if d == 3:
-                            break
                         if d == -1:
                             d = 1
                             nj = j + 1
                         s = s + 1
-                    else:
-                        d = -1
-                    if L[i][j - 1] == 1:
-                        if d == 1:
-                            break
+                    elif L[i][j - 1] == 1:
                         if d == -1:
                             d = 3
                             nj = j - 1
                         s = s + 1
                     else:
                         pass
-                d = 0
-                s = s + 1
-                ni = i + 1
+                else:
+                    d = 0
+                    s = s + 1
+                    ni = i + 1
             else:
                 d = -1
 
-            # prawo
+            # prawo - 1
             if L[i][j + 1] == 1:
                 if d == 3:
+                    d = -1
                     if L[i - 1][j] == 1:
-                        if d == 0:
-                            pass
                         if d == -1:
                             d = 2
                             ni = i - 1
                         s = s + 1
                     else:
                         pass
-                if d == -1:
+                elif d == -1:
                     d = 1
                     nj = j + 1
                 s = s + 1
             else:
                 d = -1
 
-            # gora
+            # gora - 2
             if L[i - 1][j] == 1:
                 if d == 0:
-                    pass
+                    d = -1
                 if d == -1:
                     d = 2
                     ni = i - 1
