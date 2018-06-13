@@ -94,7 +94,7 @@ class Labyrinth:
             counter = counter + 1
 
             self.__L = generator(self.__Y, self.__X)
-            #self.__L = L1
+            self.__L = L1
             L = self.__L
 
             print(" ")
@@ -123,7 +123,7 @@ class Labyrinth:
                                 print("5")
                                 good = True
             #z = int(input("A: "))
-            print(counter)
+            print("Liczba: ", counter)
 
         return self.__L
 

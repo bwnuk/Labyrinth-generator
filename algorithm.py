@@ -92,8 +92,8 @@ def Bot(L, x_p, y_p, R, x, y):
                         nj = j - 1
                     s = s + 1
 
-            # print( i, j, d)
-            # z = int(input("A: "))
+            print( i, j, d)
+            z = int(input("A: "))
 
             if s == 0:
                 i = R[cross][0][0]
