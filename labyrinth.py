@@ -80,11 +80,11 @@ class Labyrinth:
         :return: Created labyrinth, need to be tested
         """
         L1 = [[2, 0, 0, 1, 0],
-              [1, 1, 1, 1, 0],
+              [1, 1, 1, 1, 1],
               [0, 1, 0, 1, 0],
-              [0, 1, 0, 1, 1],
               [1, 1, 0, 1, 0],
-              [0, 0, 0, 1, 3]]
+              [1, 0, 1, 1, 1],
+              [0, 3, 1, 0, 0]]
 
         good = False
         counter = 0
@@ -99,29 +99,34 @@ class Labyrinth:
 
             print(" ")
             self.wypisz()
+            #return self.__L
 
-            if L[self.__S[0]][self.__S[1]] == 1:
-                print("1")
-                if L[self.__K[0]][self.__K[1]] == 1:
-                    print("2")
-                    if self.quad():
-                        print("Q")
-                        L[self.__S[0]][self.__S[1]] = 2
-                        L[self.__K[0]][self.__K[1]] = 3
+            #if L[self.__S[0]][self.__S[1]] == 1:
+            #    print("1")
+            #   if L[self.__K[0]][self.__K[1]] == 1:
+            #        print("2")
+            #         if self.quad():
+            #            print("Q")
+            #           L[self.__S[0]][self.__S[1]] = 2
+            #            L[self.__K[0]][self.__K[1]] = 3
 
-                        if self.__bool_mid:
-                            print("3a")
-                            if L[self.__M[0]][self.__M[1]] == 1:
-                                print("4")
-                                L[self.__M[0]][self.__M[1]] = 4
-                                if Bot(L, self.__S[0], self.__S[1], R, self.__K[0], self.__K[1]):
-                                    print("5")
-                                    good = True
-                        else:
-                            print("3b")
-                            if Bot(L, self.__S[0], self.__S[1], R, self.__K[0], self.__K[1]):
-                                print("5")
-                                good = True
+            #           if self.__bool_mid:
+            #                print("3a")
+            #                if L[self.__M[0]][self.__M[1]] == 1:
+            #                    print("4")
+            #                    L[self.__M[0]][self.__M[1]] = 4
+            #                    if Bot(L, self.__S[0], self.__S[1], R, self.__X, self.__Y):
+            #                        print("5")
+            #                        good = True
+            #            else:
+            #                print("3b")
+            #                if Bot(L, self.__S[0], self.__S[1], R, self.__X, self.__Y):
+            #                    print("5")
+            #                   good = True
+
+            if Bot(L, self.__S[0], self.__S[1], R, self.__X, self.__Y):
+                print("5")
+                good = True
             #z = int(input("A: "))
             print("Liczba: ", counter)
 

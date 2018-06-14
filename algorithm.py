@@ -28,22 +28,29 @@ def Bot(L, x_p, y_p, R, x, y):
     nj = y_p
 
     d = 0
+    l_d = -1
+    l_dd = -1
     #pisz(L, 6, 5)
     # secure
     counter = 0
     cross = 0
-
     side = 0
 
     while L[i][j] != 3:
-        try:
+        #try:
             s = 0
+            d = -1
+            print(" ")
 
+            #print("GD", d)
             # dol - 0
-            if i + 1 <= x:
+            if i + 1 < y:
                 if L[i + 1][j] == 1 or L[i + 1][j] == 3:
+                    if L[i + 1][j] == 3:
+                        return True
                     # jezeli bylismy u dolu
-                    if d == 2:
+                    if l_d == 0 or l_dd == 0:
+                        print("KKK")
                         d = -1
                     else:
                         d = 0
@@ -53,17 +60,22 @@ def Bot(L, x_p, y_p, R, x, y):
                     if s == 0:
                         d = -1
             else:
-                d = -1
-
+                pass
+            print(l_dd, d, l_d)
             # prawo - 1
-            if j + 1 <= y:
+            if j + 1 < x:
                 if L[i][j + 1] == 1 or L[i][j + 1] == 3:
-                    if d == 3:
+                    if L[i][j + 1] == 3:
+                        return True
+                    if (l_d == 1 or l_dd == 3) and d != 0:
+                        print("W")
                         d = -1
                     elif d == -1:
                         d = 1
                         nj = j + 1
-                    s = s + 1
+                        s = s + 1
+                    elif d == 0 and l_d != 3:
+                        s = s + 1
                 else:
                     if s == 0:
                         d = -1
@@ -71,52 +83,79 @@ def Bot(L, x_p, y_p, R, x, y):
             # gora - 2
             if i - 1 >= 0:
                 if L[i - 1][j] == 1 or L[i - 1][j] == 3:
-                    if d == 0:
+                    if L[i - 1][j] == 3:
+                        return True
+                    #print(" - ", i, j, d)
+                    if l_d == 2 or l_dd == 0:
                         if s == 0:
                             d = -1
-                    if d == -1:
+                    elif d == -1:
                         d = 2
                         ni = i - 1
-                    s = s + 1
+                        s = s + 1
+                    elif d == 1 and l_d != 0:
+                        s = s + 1
                 else:
                     if s == 0:
                         d = -1
 
             # lewo
             if j - 1 >= 0:
+
                 if L[i][j - 1] == 1 or L[i][j - 1] == 3:
-                    if d == 1:
+                    if L[i][j - 1] == 3:
+                        return True
+                    if l_d == 3 or l_d == 1 or l_dd == 1:
                         pass
                     elif d == -1:
                         d = 3
                         nj = j - 1
-                    s = s + 1
+                        s = s + 1
+                    elif (d == 0 or d == 2 or d == 1) and l_d != 1:
+                        s = s + 1
+                    else:
+                        print(d, l_d)
 
-            print( i, j, d)
+            print(i, j, "D:",  d, s)
             z = int(input("A: "))
 
             if s == 0:
+                print("POWRÓT")
+                cross = cross - 1
                 i = R[cross][0][0]
                 j = R[cross][0][1]
+                ni = R[cross][0][0]
+                nj = R[cross][0][1]
                 d = R[cross][1]
+                l_dd = R[cross][2]
+                l_d = R[cross][1]
+                cross = cross + 1
+                print(i, j, d, l_d, l_dd)
             elif s == 1:
+                l_dd = -1
                 i = ni
                 j = nj
             else:
-                R.append([[i, j], d])
+                print("DODANO")
+                print(i, j, d, l_dd)
+                R.append([[i, j], d, l_dd])
                 cross = cross + 1
                 i = ni
                 j = nj
 
+            l_dd = d
+
+
+            print(i, j)
             counter = counter + 1
 
             if counter > 1000000:
                 print("HEHE ZA DUZO")
                 return False
-        except:
-            print("COS NIE TAK")
-            if cross != 0:
-                return False
+        #except:
+        #    print("COS NIE TAK")
+         #   if cross != 0:
+         #       return False
     return True
 
 
