@@ -117,6 +117,7 @@ class LabyrinthInterface(Frame):
 
     # @Tablica
     # [Wiersz][Kolumna] = [Y] [X]
+    # lambda
     def rysuj(self):
         self.__L = []
         for w in range(int(self.__Y)):
@@ -126,6 +127,7 @@ class LabyrinthInterface(Frame):
             for j in range(int(self.__X)):
                 self.__L[i][j].grid(row=i + 4, column=2 + j, sticky=W)
 
+    #lambda
         self.__button_generate = Button(self.master, text="Generuj", fg="blue", command=lambda: self.create())
         self.__button_generate.bind("<Button-1>")
         self.__button_generate.grid(row=int(self.__Y) + 4, column=int(self.__X) + 1, sticky=E)
@@ -144,7 +146,7 @@ class LabyrinthInterface(Frame):
     def set_end(self, k, w):
         try:
             if w == self.__lab.start_get()[0] and k == self.__lab.start_get()[1]:
-                raise SetError("Start", "Koniec")
+                raise SetError("Koniec", "Start")
             else:
                 if k >= 0 and w == 0 or k == 0 and w >= 0 or w == self.__Y - 1 and k >= 0 or k == self.__X - 1 and w >= 0:
                     if fabs(w-self.__lab.start_get()[0]) + fabs(k - self.__lab.start_get()[1]) < 4:
